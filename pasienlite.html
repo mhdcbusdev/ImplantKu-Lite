@@ -454,7 +454,7 @@ const WATZAP_CONFIG = {
 /* Google Sheets Web App URL — isi setelah Apps Script di-deploy */
 const SHEET_CONFIG = {
   enabled: true,
-  webAppUrl: "https://script.google.com/macros/s/AKfycbwUXRbPJi2kY4KLbe7FyIwGa6V4IXq8gMZhbF44fqfPZQxC9jf2c4htUt7HrFlaZjLM/exec"
+  webAppUrl: "https://script.google.com/macros/s/AKfycbxyPc74-O5xc_-CxlrjbNZS1zZV373VUMyzViIRVUofh8tcleYvWuoM92VBIUy9rReA0A/exec"
 };
 
 function getAssessmentSummary(data, url){
@@ -743,14 +743,14 @@ function buildPatientCost(d){
   // Tindakan Tambahan — tampil jika ada, masuk grand total
   const penSec=document.getElementById('ps-penunjang-section');
   const penList=document.getElementById('ps-penunjang-list');
-  const tambahanAda=tambahan.filter(e=>e.price>0);
-  if(tambahanAda.length>0){
+  if(tambahan.length>0){
     penList.innerHTML='';
-    tambahanAda.forEach(e=>{
-      const pct=grand?Math.round(e.price/grand*100):0;
+    tambahan.forEach(e=>{
+      const pct=(grand && Number(e.price)>0)?Math.round(e.price/grand*100):0;
+      const valLabel=(Number(e.price)>0)?fmt(e.price):'(Akan dirujuk)';
       const row=document.createElement('div');
       row.className='cbrow';
-      row.innerHTML='<span class="cbl">'+e.name+'</span><div class="cbtrack"><div class="cbfill" data-p="'+pct+'"></div></div><span class="cbval">'+fmt(e.price)+'</span>';
+      row.innerHTML='<span class="cbl">'+e.name+'</span><div class="cbtrack"><div class="cbfill" data-p="'+pct+'"></div></div><span class="cbval">'+valLabel+'</span>';
       penList.appendChild(row);
     });
     penSec.style.display='block';
