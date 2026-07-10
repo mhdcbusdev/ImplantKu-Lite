@@ -492,7 +492,7 @@ const WATZAP_CONFIG = {
 /* Google Sheets Web App URL — isi setelah Apps Script di-deploy */
 const SHEET_CONFIG = {
   enabled: true,
-  webAppUrl: "https://script.google.com/macros/s/AKfycbx8IEuxn9LgGpxSFAeIQZ2U1QO1zYm5pdkKG63Q9S_RcRfzJNpmT2-9XiHaLC10RCJOxQ/exec"
+  webAppUrl: "https://script.google.com/macros/s/AKfycby2YjsaXixK7cCpsUCxoeyJElwtMmAEnVgKXywbLopxJFnOVm4elbIS2ek6kRnNHjlt2w/exec"
 };
 
 /* URL halaman pasien (read-only). GANTI sesuai lokasi pasien.html di GitHub Pages kamu. */
@@ -544,7 +544,7 @@ async function saveAssessmentToSheet(data, url){
   };
 
   try{
-    const response = await fetch(SHEET_CONFIG.webAppUrl, {
+    const response = await fetch(SHEET_CONFIG.Url, {
       method:'POST',
       mode:'no-cors',
       headers:{ 'Content-Type':'text/plain;charset=utf-8' },
